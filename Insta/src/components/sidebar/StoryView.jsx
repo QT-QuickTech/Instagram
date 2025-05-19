@@ -6,6 +6,7 @@ export default function StoryView() {
   const [stories, setStories] = useState(location.state?.stories || []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef(null);
+  console.log(stories)
 
   useEffect(() => {
     if (stories[currentIndex] && !stories[currentIndex].viewed) {

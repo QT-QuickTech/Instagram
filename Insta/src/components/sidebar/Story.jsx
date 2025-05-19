@@ -6,16 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 
 const stories = [
-  { id: 1,name:"saran", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-  { id: 2, name:"saran",video: "https://www.w3schools.com/html/movie.mp4" },
-  { id: 3, name:"saran",video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-  { id: 4, name:"saran",video: "https://www.w3schools.com/html/movie.mp4" },
-  { id: 5, name:"saran",video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-  { id: 6, name:"saran",video: "https://www.w3schools.com/html/movie.mp4" },
-  { id: 7, name:"saran",video: "https://www.w3schools.com/html/movie.mp4" },
-  { id: 8, name:"saran",video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-  { id: 9, name:"saran",video: "https://www.w3schools.com/html/movie.mp4" },
+  { id: 1, name: "saran", video: "https://www.w3schools.com/html/mov_bbb.mp4", viewed: false },
+  { id: 2, name: "saran", video: "https://www.w3schools.com/html/movie.mp4", viewed: false },
+  { id: 3, name: "saran", video: "https://www.w3schools.com/html/mov_bbb.mp4", viewed: false },
+  { id: 4, name: "saran", video: "https://www.w3schools.com/html/movie.mp4", viewed: false },
+  { id: 5, name: "saran", video: "https://www.w3schools.com/html/mov_bbb.mp4", viewed: false },
+  { id: 6, name: "saran", video: "https://www.w3schools.com/html/movie.mp4", viewed: false },
+  { id: 7, name: "saran", video: "https://www.w3schools.com/html/movie.mp4", viewed: false },
+  { id: 8, name: "saran", video: "https://www.w3schools.com/html/mov_bbb.mp4", viewed: false },
+  { id: 9, name: "saran", video: "https://www.w3schools.com/html/movie.mp4", viewed: false }
 ];
+
 
 export default function StoryViewer() {
   const navigate=useNavigate();

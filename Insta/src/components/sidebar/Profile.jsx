@@ -34,7 +34,7 @@ function Profile() {
          </div>
 
           <div>
-               {/* Profile Header */}
+            
                <div className="flex p-6 border-b">
                <div
                   className="w-36 h-36 rounded-full bg-cover bg-center mr-10"
@@ -46,7 +46,7 @@ function Profile() {
                      <button className="bg-gray-100 px-4 py-1 rounded text-sm">Edit profile</button>
                      <button className="bg-gray-100 px-4 py-1 rounded text-sm">View archive</button>
                   </div>
-                  <Follower/>
+                  <Follower id={id}/>
                   <div className="mt-4 text-sm leading-5">
                      <p className="font-semibold">{user.userName}</p>
                      <p>@{user.userIdName}</p>
@@ -54,7 +54,7 @@ function Profile() {
                </div>
                </div>
 
-               {/* Highlights */}
+               
                <div className="flex overflow-x-auto space-x-4 px-6 py-4">
                {[
                   "natpuzz💖⚡", "🦋", "INDIA✈️", "🛵💨", "😊", "🥖🍑💕", "famly🖤"
