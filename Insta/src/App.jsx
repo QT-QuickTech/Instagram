@@ -11,6 +11,7 @@ import Notifications from './components/sidebar/Notifications';
 import Profile from './components/sidebar/Profile';
 import Search from './components/sidebar/Search';
 import More from './components/sidebar/More';
+import StoryView from './components/sidebar/StoryView';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/profile/:id" element={<Profile/>} />
         <Route path="/search" element={<Search/>} />
         <Route path="/more" element={<More/>} />
+        <Route path="/storyview" element={<StoryView/>} />
       </Routes>
     </Router>
     </>

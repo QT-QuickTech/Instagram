@@ -7,7 +7,9 @@ function Search() {
         <div className="height-full w-1/12 ">
             <SideBarIcons/>
          </div>
-        <div>Search</div>
+        <div>
+         
+        </div>
      </div>
     </>
    
