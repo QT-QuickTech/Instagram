@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 function SideBar(props) {
   const id=props.id;
-  console.log("props : "+id) //id=1
   const navigate = useNavigate();
   return (
     <div className='flex flex-col   h-screen fixed w-1/5 text-base hover:cursor-pointer'>

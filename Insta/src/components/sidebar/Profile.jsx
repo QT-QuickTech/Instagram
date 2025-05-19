@@ -3,29 +3,53 @@ import SideBar from '../SideBar'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import Follower from '../Follower';
+import UserPosts from './UserPosts';
+import UserReels from './UserReels';
 
 const API = 'http://localhost:8080/api';
 function Profile() {
-
-   const {id}= useParams();
-   const path=`/user/${id}`;
-   const [user,setUser] =useState({});
-    
-   useEffect(() => {
       
-      async function fetchUser() {
-        try {
-          const response = await axios.get(API+path);
-          setUser(response.data);  
-        } catch (error) {
-          console.error('Error fetching user:', error);
-        }
+  const { id } = useParams();
+  const userPath = `/user/${id}`;
+  const postsPath = `/posts/${id}`; 
+  const [user, setUser] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [bottom,setBottom] = useState(<UserPosts posts={posts}/>);
+  const [follows,setFollows]=useState(<Follower id={id} totalPost={posts.length}/>)
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const response = await axios.get(API + userPath);
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
       }
-      fetchUser();
-    }, [path]);
+    }
+    fetchUser();
+  }, [userPath]);
+
+  useEffect(()=>{
+    setBottom(<UserPosts posts={posts}/>);
+    setFollows(<Follower id={id} totalPost={posts.length}/>);
+
     
-    console.log(user);
-   
+  },[posts])
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const response = await axios.get(API + postsPath);
+        setPosts(response.data);
+       
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+    fetchPosts();
+  }, [postsPath]);
+
+   console.log(posts);
   return (
      <>
      <div className='flex font-mono'>
@@ -33,20 +57,20 @@ function Profile() {
             <SideBar id={id}/>
          </div>
 
-          <div>
+          <div className="height-full w-3/4 ">
             
                <div className="flex p-6 border-b">
-               <div
-                  className="w-36 h-36 rounded-full bg-cover bg-center mr-10"
-                  style={{ backgroundImage: `url('${user.profilePictureUrl}')` }}
-               ></div>
+                  <div
+                      className="w-36 h-36 rounded-full bg-cover bg-center mr-10"
+                      style={{ backgroundImage: `url('${user.profilePictureUrl}')` }}
+                  ></div>
                <div>
                   <div className="flex items-center space-x-4">
                      <h1 className="text-2xl font-semibold">{user.userIdName}</h1>
                      <button className="bg-gray-100 px-4 py-1 rounded text-sm">Edit profile</button>
                      <button className="bg-gray-100 px-4 py-1 rounded text-sm">View archive</button>
                   </div>
-                  <Follower id={id}/>
+                  {follows}
                   <div className="mt-4 text-sm leading-5">
                      <p className="font-semibold">{user.userName}</p>
                      <p>@{user.userIdName}</p>
@@ -72,22 +96,15 @@ function Profile() {
 
                {/* Tabs */}
                <div className="border-t border-b flex justify-center space-x-6 text-sm py-2 font-semibold">
-               <div className="cursor-pointer">📷 POSTS</div>
-               <div className="cursor-pointer">🎞 REELS</div>
+               <div className="cursor-pointer" onClick={()=>{setBottom(<UserPosts posts={posts}/>)}}>📷 POSTS</div>
+               <div className="cursor-pointer" onClick={()=>{setBottom(<UserReels posts={posts}/>)}}> 🎞 REELS</div>
                <div className="cursor-pointer">🔖 SAVED</div>
                <div className="cursor-pointer">👥 TAGGED</div>
                </div>
 
                {/* Posts Grid */}
-               <div className="grid grid-cols-3 gap-1 p-1">
-               {[1, 2, 3].map((_, i) => (
-                  <div
-                     key={i}
-                     className="aspect-square bg-gray-300 bg-cover bg-center"
-                     style={{ backgroundImage: "url('https://via.placeholder.com/300x300')" }}
-                  ></div>
-               ))}
-               </div>
+               {bottom}
+
          </div>
      </div>
     </>

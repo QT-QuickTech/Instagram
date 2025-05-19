@@ -7,11 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.Qt.instademo.model.Follower;
-import com.Qt.instademo.model.User;
 import com.Qt.instademo.repository.FollowRepository;
-import com.Qt.instademo.repository.UserRepo;
 import com.Qt.instademo.repository.DTO.FollowStatsDTO;
 
 @RestController
@@ -22,7 +18,7 @@ public class FollowController {
     FollowRepository repo;
 
      @GetMapping("/follows")
-      public ResponseEntity<FollowStatsDTO> getUserByQuery(@RequestParam("id") Long id) {
+      public ResponseEntity<FollowStatsDTO> getfollowsByQuery(@RequestParam("id") Long id) {
             FollowStatsDTO stats = repo.getFollowStatsByUserId(id);
             if (stats != null) {
                 return ResponseEntity.ok(stats);
@@ -32,7 +28,7 @@ public class FollowController {
       }
 
       @GetMapping("/follows/{id}")
-      public ResponseEntity<FollowStatsDTO> getUserByPath(@PathVariable("id") Long id) {
+      public ResponseEntity<FollowStatsDTO> getfollowsByPath(@PathVariable("id") Long id) {
             FollowStatsDTO stats = repo.getFollowStatsByUserId(id);
             if (stats != null) {
                 return ResponseEntity.ok(stats);

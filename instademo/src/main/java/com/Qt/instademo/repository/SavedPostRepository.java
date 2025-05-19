@@ -1,12 +1,11 @@
 package com.Qt.instademo.repository;
 
+import com.Qt.instademo.model.SavedPost;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Qt.instademo.model.Post;
-
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
-   List<Post> findAllByUser_UserId(Long userId);  
+public interface SavedPostRepository  extends JpaRepository<SavedPost, Long> {
+     List<SavedPost> findAllByPost_PostId(Long postId);
 }

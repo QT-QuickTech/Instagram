@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export default function StoryView() {
+  const navigate = useNavigate();
   const location = useLocation();
   const [stories, setStories] = useState(location.state?.stories || []);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -110,6 +112,12 @@ export default function StoryView() {
           ▶
         </button>
       )}
+      <button
+          onClick={() => navigate(-1)}
+          className="absolute right-3 top-3 text-4xl text-white px-4"
+        >
+          X
+        </button>
     </div>
   );
 }
